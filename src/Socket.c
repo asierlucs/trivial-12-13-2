@@ -99,15 +99,17 @@ int Socket_prepararCliente(char ip[],char port[])
   }  
 }
 
+// Función para leer del socket (devuelve el mensaje sin \n)
 char* Socket_leer(int sock){
-    char buf[TAM_BUFF];
+    char buf[TAM_BUFF];  // Esto dará problemas cuando se salga de la función por ser una variable local?
+    FILE *f;
 
     f=fdopen(sock,"r");
     setbuf(f,NULL);
     strcpy(buf,"");
     fgets(buf,TAM_BUFF,f);
 
-    return buff;
+    return buf;
 }
 
 void Socket_escribit(int sock,char msj[]){
